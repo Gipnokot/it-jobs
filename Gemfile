@@ -12,6 +12,9 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 gem "dotenv-rails"
 gem "will_paginate"
+gem "tailwindcss-rails"
+gem "tailwindcss-ruby", "3.4.13"
+
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"

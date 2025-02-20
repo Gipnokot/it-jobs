@@ -1,24 +1,24 @@
-<div class="container mt-5">
-  <div class="card shadow-lg p-4">
-    <h1 class="text-primary text-center"><%= @vacancy.title %></h1>
+<div class="card bg-white p-6 rounded-lg shadow-lg">
+  <h1 class="text-3xl font-bold text-blue-600"><%= @vacancy.title %></h1>
+  <p class="text-gray-700 mt-4"><%= @vacancy.description %></p>
 
-    <div class="row mt-3">
-      <div class="col-md-6">
-        <p><strong>💰 Зарплата:</strong> <%= @vacancy.salary %> ₽</p>
-        <p><strong>📍 Город:</strong> <%= @vacancy.city %></p>
-      </div>
-      <div class="col-md-6">
-        <p><strong>📅 Опыт работы:</strong> <%= @vacancy.experience %></p>
-        <p><strong>📞 Контакты работодателя:</strong> <%= @vacancy.employer.contact_info %></p>
-      </div>
-    </div>
+  <div class="mt-6">
+    <h2 class="text-xl font-semibold">Детали</h2>
+    <ul class="list-disc list-inside mt-2">
+      <li><strong>Категория:</strong> <%= @vacancy.category %> <span role="img" aria-label="category">🧑‍💻</span></li>
+      <li><strong>Зарплата:</strong> <%= @vacancy.salary %> <span role="img" aria-label="money">💰</span></li>
+      <li><strong>Город:</strong> <%= @vacancy.city %> <span role="img" aria-label="city">🌆</span></li>
+      <li><strong>Опыт работы:</strong> <%= @vacancy.experience %> <span role="img" aria-label="experience">💼</span></li>
+    </ul>
+  </div>
 
-    <hr>
+  <div class="mt-6">
+    <h2 class="text-xl font-semibold">Работодатель</h2>
+    <p class="text-gray-700"><%= @vacancy.employer.name %> <span role="img" aria-label="employer">👨‍💼</span></p>
+    <p class="text-gray-700"><%= @vacancy.employer.contact_info %></p>
+  </div>
 
-    <p class="lead"><%= @vacancy.description %></p>
-
-    <div class="text-center mt-4">
-      <%= link_to '🔙 Вернуться к списку', vacancies_path, class: "btn btn-secondary" %>
-    </div>
+  <div class="mt-6">
+    <%= link_to "Назад к вакансиям", vacancies_path, class: "btn btn-outline btn-primary" %>
   </div>
 </div>

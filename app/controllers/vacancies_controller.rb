@@ -8,16 +8,16 @@ class VacanciesController < ApplicationController
     if params[:salary_from].present? && params[:salary_to].present?
       @vacancies = @vacancies.where(salary: params[:salary_from]..params[:salary_to])
     elsif params[:salary_from].present?
-      @vacancies = @vacancies.where(salary: params[:salary_from]..)
+      @vacancies = @vacancies.where("salary >= ?", params[:salary_from])
     elsif params[:salary_to].present?
-      @vacancies = @vacancies.where(salary: ..params[:salary_to])
+      @vacancies = @vacancies.where("salary <= ?", params[:salary_to])
     end
 
     @vacancies = @vacancies.where("experience ILIKE ?", "%#{params[:experience]}%") if params[:experience].present?
   end
 
   def show
-    @vacancy = Vacancy.find(params[:id])
+    @vacancy = Vacancy.includes(:employer).find(params[:id])
   end
 
   def new
@@ -30,7 +30,7 @@ class VacanciesController < ApplicationController
     if @vacancy.save
       redirect_to @vacancy, notice: t(".success")
     else
-      Rails.logger.debug @vacancy.errors.full_messages # Логируем ошибки валидации
+      Rails.logger.debug @vacancy.errors.full_messages
       render :new, status: :unprocessable_entity
     end
   end
@@ -38,6 +38,6 @@ class VacanciesController < ApplicationController
   private
 
   def vacancy_params
-    params.require(:vacancy).permit(:title, :category, :salary, :city, :experience, :description, :employer_id, :employer_id)
+    params.require(:vacancy).permit(:title, :category, :salary, :city, :experience, :description, :employer_id)
   end
 end

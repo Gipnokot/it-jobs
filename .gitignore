@@ -36,3 +36,6 @@
 .env
 config/application.yml
 config/application.yml
+
+/app/assets/builds/*
+!/app/assets/builds/.keep
