@@ -1,2 +1,59 @@
-<h1>Vacancies#index</h1>
-<p>Find me in app/views/vacancies/index.html.erb</p>
+<h1 class="text-center my-4">IT Вакансии</h1>
+
+<div class="container">
+  <div class="card p-4 shadow-sm">
+    <%= form_with url: vacancies_path, method: :get, local: true, class: "row g-3" do %>
+      <div class="col-md-3">
+        <%= label_tag :category, "Категория:", class: "form-label" %>
+        <%= text_field_tag :category, params[:category], class: "form-control" %>
+      </div>
+
+      <div class="col-md-3">
+        <%= label_tag :city, "Город:", class: "form-label" %>
+        <%= text_field_tag :city, params[:city], class: "form-control" %>
+      </div>
+
+      <div class="col-md-3">
+        <%= label_tag :salary, "Зарплата от:", class: "form-label" %>
+        <%= number_field_tag :salary_from, params[:salary_from], class: "form-control" %>
+      </div>
+
+      <div class="col-md-3">
+        <%= label_tag :salary_to, "до:", class: "form-label" %>
+        <%= number_field_tag :salary_to, params[:salary_to], class: "form-control" %>
+      </div>
+
+      <div class="col-md-3">
+        <%= label_tag :experience, "Опыт работы:", class: "form-label" %>
+        <%= text_field_tag :experience, params[:experience], class: "form-control" %>
+      </div>
+
+      <div class="col-md-3 d-flex align-items-end">
+        <%= submit_tag "Фильтровать", class: "btn btn-primary w-100" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row mt-4">
+    <% @vacancies.each do |vacancy| %>
+      <div class="col-md-6 col-lg-4">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= link_to vacancy.title, vacancy_path(vacancy), class: "text-decoration-none text-dark" %>
+            </h5>
+            <p class="card-text"><strong>Категория:</strong> <%= vacancy.category %></p>
+            <p class="card-text"><strong>Зарплата:</strong> <%= vacancy.salary %> ₽</p>
+            <p class="card-text"><strong>Город:</strong> <%= vacancy.city %></p>
+            <p class="card-text"><strong>Требуемый опыт работы:</strong> <%= vacancy.experience %></p>
+            <p class="text-muted"><%= vacancy.description.truncate(100) %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <%= will_paginate @vacancies, previous_label: 'Предыдущая', next_label: 'Следующая', class: "pagination" %>
+  </div>
+</div>

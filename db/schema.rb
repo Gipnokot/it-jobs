@@ -10,19 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_02_18_130031) do
+ActiveRecord::Schema[7.2].define(version: 2025_02_19_102829) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "employers", force: :cascade do |t|
+    t.string "name"
+    t.text "contact_info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "vacancies", force: :cascade do |t|
     t.string "title"
     t.string "category"
-    t.integer "salary"
+    t.string "salary"
     t.string "city"
     t.string "experience"
     t.text "description"
-    t.text "contacts"
+    t.bigint "employer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["employer_id"], name: "index_vacancies_on_employer_id"
   end
+
+  add_foreign_key "vacancies", "employers"
 end

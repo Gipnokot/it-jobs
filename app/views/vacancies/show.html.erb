@@ -1,2 +1,24 @@
-<h1>Vacancies#show</h1>
-<p>Find me in app/views/vacancies/show.html.erb</p>
+<div class="container mt-5">
+  <div class="card shadow-lg p-4">
+    <h1 class="text-primary text-center"><%= @vacancy.title %></h1>
+
+    <div class="row mt-3">
+      <div class="col-md-6">
+        <p><strong>💰 Зарплата:</strong> <%= @vacancy.salary %> ₽</p>
+        <p><strong>📍 Город:</strong> <%= @vacancy.city %></p>
+      </div>
+      <div class="col-md-6">
+        <p><strong>📅 Опыт работы:</strong> <%= @vacancy.experience %></p>
+        <p><strong>📞 Контакты работодателя:</strong> <%= @vacancy.employer.contact_info %></p>
+      </div>
+    </div>
+
+    <hr>
+
+    <p class="lead"><%= @vacancy.description %></p>
+
+    <div class="text-center mt-4">
+      <%= link_to '🔙 Вернуться к списку', vacancies_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+</div>

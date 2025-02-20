@@ -3,11 +3,11 @@ class CreateVacancies < ActiveRecord::Migration[7.2]
     create_table :vacancies do |t|
       t.string :title
       t.string :category
-      t.integer :salary
+      t.string :salary
       t.string :city
       t.string :experience
       t.text :description
-      t.text :contacts
+      t.references :employer, null: false, foreign_key: true
 
       t.timestamps
     end
