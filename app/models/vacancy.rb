@@ -1,5 +1,13 @@
 class Vacancy < ApplicationRecord
   belongs_to :employer
+
+  validates :title, presence: true
+  validates :category, presence: true
+  validates :city, presence: true
+  validates :description, presence: true
+  validates :experience, presence: true
+  validates :salary, presence: true
+  validates :employer_id, presence: true
 end
 
 # == Schema Information
