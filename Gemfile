@@ -27,5 +27,4 @@ group :development do
   gem "web-console"
   gem "annotate"
   gem "bullet"
-  gem "bundler-audit"
 end
