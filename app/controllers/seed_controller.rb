@@ -1,11 +1,10 @@
-class SeedController < ApplicationController
-  skip_before_action :verify_authenticity_token  # Это позволяет отправлять запросы без CSRF токена
+# app/controllers/seeds_controller.rb
+class SeedsController < ApplicationController
+  skip_before_action :verify_authenticity_token  # Чтобы не было проблем с CSRF
 
   def run
-    # Ваш код для сидирования данных
-    Rails.application.load_seed
-    render json: { message: "Seeding completed successfully" }, status: :ok
-  rescue StandardError => e
-    render json: { error: e.message }, status: :internal_server_error
+    # Запуск Rake задачи
+    system("bundle exec rake seed:run")
+    render json: { message: "Seeding started" }, status: :ok
   end
 end
