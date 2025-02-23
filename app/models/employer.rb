@@ -1,5 +1,8 @@
 class Employer < ApplicationRecord
   has_many :vacancies, dependent: :destroy
+
+  validates :contact_info, presence: true
+  validates :name, presence: true
 end
 
 # == Schema Information
