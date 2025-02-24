@@ -13,7 +13,7 @@ gem "bootsnap", require: false
 gem "dotenv-rails"
 gem "will_paginate"
 gem "tailwindcss-rails"
-gem "tailwindcss-ruby", "3.4.13"
+gem "tailwindcss-ruby", "4.0.8"
 
 
 group :development, :test do
